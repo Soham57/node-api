@@ -12,3 +12,5 @@ router.get("/update:id", () => {});
 router.put("/update:id", () => {});
 router.post("/update", () => {});
 router.delete("/update/:id", () => {});
+
+export default router;
