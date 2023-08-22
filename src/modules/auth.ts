@@ -6,8 +6,7 @@ export const comparePasswords = (password, hash) => {
 };
 
 export const hashPassword = (password) => {
-  let salt = 176854;
-  return bcrypt.hash(password, salt);
+  return bcrypt.hash(password, 5);
 };
 
 export const createJWT = (user) => {
