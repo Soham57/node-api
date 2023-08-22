@@ -3,9 +3,11 @@ import router from "./router";
 import morgan from "morgan";
 import { protect } from "./modules/auth";
 import { createNewUser, signIn } from "./handlers/user";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
