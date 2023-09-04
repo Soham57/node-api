@@ -1,4 +1,3 @@
-import { raw } from "@prisma/client/runtime/library";
 import prisma from "../db";
 
 export const getProducts = async (req, res) => {
