@@ -39,13 +39,11 @@ router.put(
 );
 router.post(
   "/update",
-  body("title").isString(),
-  body("body").isString(),
-  body("asset").isString(),
-  body("productId").isString(),
-  handleInputErrors,
+  body("title").exists().isString(),
+  body("body").exists().isString(),
   (req, res) => {}
 );
+
 router.delete("/update/:id", () => {});
 
 export default router;
