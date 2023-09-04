@@ -54,7 +54,13 @@ router.put(
   body("description").optional().isString(),
   () => {}
 );
-router.post("/updatepoint", () => {});
+router.post(
+  "/updatepoint",
+  body("name").isString(),
+  body("description").isString(),
+  body("updateId").exists().isString(),
+  () => {}
+);
 router.delete("/updatepoint/:id", () => {});
 
 export default router;
