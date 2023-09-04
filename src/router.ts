@@ -28,12 +28,7 @@ router.put(
   "/update/:id",
   body("title").optional(),
   body("body").optional(),
-  oneOf("status", [
-    body("IN_PROGRESS"),
-    body("SHIPPED"),
-    body("DEPRECATED"),
-    body("ARCHIVED"),
-  ]),
+  body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED", "ARCHIVED"]),
   body("version").optional(),
   () => {}
 );
