@@ -1,3 +1,4 @@
+import { raw } from "@prisma/client/runtime/library";
 import prisma from "../db";
 
 export const getProducts = async (req, res) => {
@@ -11,4 +12,17 @@ export const getProducts = async (req, res) => {
   });
 
   res.json({ data: user.product });
+};
+
+export const getOneProduct = async (req, res) => {
+  const id = req.params.id;
+
+  const product = await prisma.product.findFirst({
+    where: {
+      id,
+      belongsToId: req.user.id,
+    },
+  });
+
+  res.json({ data: product });
 };
