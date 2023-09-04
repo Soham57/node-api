@@ -19,7 +19,6 @@ router.post(
   handleInputErrors,
   (req, res) => {}
 );
-
 router.delete("/product/:id", () => {});
 
 router.get("/update", () => {});
