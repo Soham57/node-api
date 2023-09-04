@@ -29,7 +29,7 @@ model Product {
 
 enum UPDATE_STATUS {
   IN_PROGRESS
-  LIVE
+  SHIPPED
   DEPRECATED
   ARCHIVED
 }

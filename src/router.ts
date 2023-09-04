@@ -23,8 +23,20 @@ router.post(
 router.delete("/product/:id", () => {});
 
 router.get("/update", () => {});
-router.get("/update:id", () => {});
-router.put("/update:id", () => {});
+router.get("/update/:id", () => {});
+router.put(
+  "/update/:id",
+  body("title").optional(),
+  body("body").optional(),
+  oneOf("status", [
+    body("IN_PROGRESS"),
+    body("SHIPPED"),
+    body("DEPRECATED"),
+    body("ARCHIVED"),
+  ]),
+  body("version").optional(),
+  () => {}
+);
 router.post(
   "/update",
   body("title").isString(),
