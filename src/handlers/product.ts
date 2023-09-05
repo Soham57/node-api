@@ -1,5 +1,6 @@
 import prisma from "../db";
 
+// Get all
 export const getProducts = async (req, res) => {
   const user = await prisma.user.findUnique({
     where: {
@@ -13,6 +14,7 @@ export const getProducts = async (req, res) => {
   res.json({ data: user.product });
 };
 
+// Get one
 export const getOneProduct = async (req, res) => {
   const id = req.params.id;
 
@@ -26,17 +28,23 @@ export const getOneProduct = async (req, res) => {
   res.json({ data: product });
 };
 
-export const createProduct = async (req, res) => {
-  const product = await prisma.product.create({
-    data: {
-      name: req.body.name,
-      belongsToId: req.user.id,
-    },
-  });
+// Create one
+export const createProduct = async (req, res, next) => {
+  try {
+    const product = await prisma.product.create({
+      data: {
+        name: req.body.name,
+        belongsToId: req.user.id,
+      },
+    });
 
-  res.json({ data: product });
+    res.json({ data: product });
+  } catch (e) {
+    next(e);
+  }
 };
 
+// Update one
 export const updateProduct = async (req, res) => {
   const updated = await prisma.product.update({
     where: {
@@ -49,9 +57,11 @@ export const updateProduct = async (req, res) => {
       name: req.body.name,
     },
   });
+
   res.json({ data: updated });
 };
 
+// Delete one
 export const deleteProduct = async (req, res) => {
   const deleted = await prisma.product.delete({
     where: {
@@ -61,5 +71,6 @@ export const deleteProduct = async (req, res) => {
       },
     },
   });
+
   res.json({ data: deleted });
 };
